@@ -1,0 +1,11 @@
+node_modules
+.next
+.vscode
+package-lock.json
+*-error.log
+/logs
+build.sh
+/test
+*.log
+.env.local
+.idea
