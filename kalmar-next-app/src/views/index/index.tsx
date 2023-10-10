@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import CLOUDS from 'vanta/dist/vanta.clouds.min.js';
+import Typewriter from "@/src/components/Typewriter";
 
 const Fps = styled.div`
   position: fixed;
@@ -47,8 +48,8 @@ const Index = (props) => {
     const animate = () => requestAnimationFrame(calculateFPS);
 
     useEffect(() => {
-        setVanta();
-        animate();
+        // setVanta();
+        // animate();
         return () => {
             if (vantaEffect) {
                 setFps(0)
@@ -67,6 +68,7 @@ const Index = (props) => {
     return (
         <div ref={myRef} style={{ width: '100vw' }}>
             {getFpsDom()}
+            <Typewriter text="愿你眼里有光,心中有爱,目光所及皆是美好"  />
         </div>
     );
 };
