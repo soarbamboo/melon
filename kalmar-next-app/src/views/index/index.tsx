@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import CLOUDS from 'vanta/dist/vanta.clouds.min.js';
 import Typewriter from "@/src/components/Typewriter";
+import Nav from "@/src/components/Nav"
+
 
 const Fps = styled.div`
   position: fixed;
@@ -67,8 +69,9 @@ const Index = (props) => {
     }
     return (
         <div ref={myRef} style={{ width: '100vw' }}>
+            <Nav/>
             {getFpsDom()}
-            <Typewriter text="愿你眼里有光,心中有爱,目光所及皆是美好"  />
+            <Typewriter text="愿你眼里有光,心中有爱,目光所及皆是美好" />
         </div>
     );
 };
