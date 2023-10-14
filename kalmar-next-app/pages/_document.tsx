@@ -18,8 +18,9 @@ export default class MyDocument extends Document<DocumentProps> {
             }
             ctx.renderPage = () =>
                 originalRenderPage({
-                    enhanceApp: (App) => (props, index) =>
-                        sheet.collectStyles(<App keys={index + "app"} {...props} />),
+                    enhanceApp: (App) => (props) => {
+                        return sheet.collectStyles(<App  {...props} key={props.route} />)
+                    }
                 });
             const { hostname, headmeta, protocol, url } = ctx?.req || {};
             const initialProps = await Document.getInitialProps(ctx);
@@ -57,8 +58,8 @@ export default class MyDocument extends Document<DocumentProps> {
                     {!!description && <meta property="description" content={description} />}
                     {!!keywords && <meta property="keyswords" content={keywords} />}
                 </Head>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
+                <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
                 <body>
                     <Main />
                     <script

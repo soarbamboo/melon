@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { Cursor, TypewriterContent } from "./style";
+import { TypewriterContent } from "./style";
 import useTypewriter from "react-typewriter-hook";
-
+// import "./index.module.css"
 
 const MagicOcean = [
   "Yo, did you see that?",
@@ -29,7 +29,7 @@ function Typewriter({ text }) {
   );
   return (
     <TypewriterContent >
-      <Cursor>{name}</Cursor>
+      <p className="cursor">{name}</p>
     </TypewriterContent>
   );
 }

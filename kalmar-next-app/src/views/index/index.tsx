@@ -6,10 +6,14 @@ import Nav from "@/src/components/Nav"
 
 
 const Fps = styled.div`
-  position: fixed;
-  color: #2b2928;
-  left: 10px;
-  bottom: 50px;
+    position: fixed;
+    left: 10px;
+    bottom: 20px;
+    color: #444a50;
+    font-size: 12px;
+    font-family: circular, 'segoe ui', sans-serif;
+    z-index:1;
+    font-wight:600;
 `;
 const Index = (props) => {
     const myRef = useRef(null);
@@ -39,10 +43,12 @@ const Index = (props) => {
                     mouseControls: true,
                     touchControls: true,
                     gyroControls: false,
-                    minHeight: 200.0,
-                    minWidth: 200.0,
-                    backgroundColor: 0xf02f2f,
-                    skyColor: 0x390487,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    sunColor: 0x896d4c,
+                    sunGlareColor: 0xd95529,
+                    sunlightColor: 0xd99756,
+                    speed: 1.20
                 })
             );
         }
@@ -50,8 +56,8 @@ const Index = (props) => {
     const animate = () => requestAnimationFrame(calculateFPS);
 
     useEffect(() => {
-        // setVanta();
-        // animate();
+        setVanta();
+        animate();
         return () => {
             if (vantaEffect) {
                 setFps(0)
@@ -69,7 +75,7 @@ const Index = (props) => {
     }
     return (
         <div ref={myRef} style={{ width: '100vw' }}>
-            <Nav/>
+            <Nav />
             {getFpsDom()}
             <Typewriter text="愿你眼里有光,心中有爱,目光所及皆是美好" />
         </div>

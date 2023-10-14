@@ -1,8 +1,10 @@
 import App from "next/app";
 import Head from "next/head";
 import React from "react";
-import { GlobalStyle } from "@/src/common/globalStyles";
-
+require("@/src/assets/css/global.css");
+if (!__SERVER__) {
+    require("@/src/assets/iconfont/iconfont");
+}
 export interface AppProps {
     env: string; //运行环境
     path: string; // 页面path
@@ -41,7 +43,6 @@ export default class MyApp extends App<AppProps> {
         const { Component, pageProps } = this.props;
         return (
             <React.Fragment>
-                <GlobalStyle />
                 <Head>
                     <meta charSet="utf-8" />
                     <meta
@@ -50,8 +51,6 @@ export default class MyApp extends App<AppProps> {
                     />
                     <title>next.js project</title>
                 </Head>
-                <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
                 <Component {...pageProps} />
             </React.Fragment>
         );
