@@ -58,8 +58,6 @@ export default class MyDocument extends Document<DocumentProps> {
                     {!!description && <meta property="description" content={description} />}
                     {!!keywords && <meta property="keyswords" content={keywords} />}
                 </Head>
-                <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
                 <body>
                     <Main />
                     <script

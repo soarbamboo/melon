@@ -1,84 +1,78 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 import CLOUDS from 'vanta/dist/vanta.clouds.min.js';
 import Typewriter from "@/src/components/Typewriter";
-import Nav from "@/src/components/Nav"
+import { ContentText, Fps, IndexContent, IndexBox, VantaContent } from './style';
 
+class Index extends React.Component {
+    static IS_INDEX = true;
+    state = {
+        fps: 0,
+        vantaEffect: null
+    }
+    myRef: HTMLDivElement;
+    indexFramse = 0;
+    lastTimestamp = performance.now();
 
-const Fps = styled.div`
-    position: fixed;
-    left: 10px;
-    bottom: 20px;
-    color: #444a50;
-    font-size: 12px;
-    font-family: circular, 'segoe ui', sans-serif;
-    z-index:1;
-    font-wight:600;
-`;
-const Index = (props) => {
-    const myRef = useRef(null);
-    let indexFramse = 0;
-    let lastTimestamp = performance.now();
+    componentDidMount() {
+        this.setVanta();
+        this.animate();
+    }
+    componentWillUnmount() {
+        if (this.state.vantaEffect) {
+            this.setState({ fps: 0 })
+            this.state.vantaEffect.destroy();
+        }
+    }
+    setVanta = () => {
+        if (!this.state.vantaEffect) {
+            const vantaEffect = CLOUDS({
+                el: this.myRef,
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                backgroundColor: 0xe6d9d9,
+                sunColor: 0xe18a1d,
+                speed: 1.40
+            })
+            this.setState({ vantaEffect })
+        }
+    };
+    animate = () => requestAnimationFrame(this.calculateFPS);
 
-    const [vantaEffect, setVantaEffect] = useState(null);
-    const [fps, setFps] = useState(0);
-
-    const calculateFPS = (timestamp) => {
-        const elapsed = timestamp - lastTimestamp;
+    calculateFPS = (timestamp) => {
+        const elapsed = timestamp - this.lastTimestamp;
         if (elapsed >= 100) {
-            const fps = (indexFramse * 100) / elapsed;
-            setFps(fps);
-            indexFramse = 0;
-            lastTimestamp = timestamp;
+            const fps = (this.indexFramse * 100) / elapsed;
+            this.setState({ fps })
+            this.indexFramse = 0;
+            this.lastTimestamp = timestamp;
         }
-        indexFramse++;
-        animate();
+        this.indexFramse++;
+        this.animate();
     };
-
-    const setVanta = () => {
-        if (!vantaEffect) {
-            setVantaEffect(
-                CLOUDS({
-                    el: myRef.current,
-                    mouseControls: true,
-                    touchControls: true,
-                    gyroControls: false,
-                    minHeight: 200.00,
-                    minWidth: 200.00,
-                    sunColor: 0x896d4c,
-                    sunGlareColor: 0xd95529,
-                    sunlightColor: 0xd99756,
-                    speed: 1.20
-                })
-            );
-        }
-    };
-    const animate = () => requestAnimationFrame(calculateFPS);
-
-    useEffect(() => {
-        setVanta();
-        animate();
-        return () => {
-            if (vantaEffect) {
-                setFps(0)
-                vantaEffect.destroy();
-            }
-        };
-    }, [vantaEffect]);
-
-    const getFpsDom = () => {
-        if (fps > 0) {
+    getFpsDom = () => {
+        if (this.state.fps > 0) {
             return <Fps>
-                <span>{fps.toFixed(1)} fps</span>
+                <span>{this.state.fps.toFixed(1)} fps</span>
             </Fps>
         }
     }
-    return (
-        <div ref={myRef} style={{ width: '100vw' }}>
-            <Nav />
-            {getFpsDom()}
-            <Typewriter text="愿你眼里有光,心中有爱,目光所及皆是美好" />
-        </div>
-    );
-};
+    render() {
+        return (
+            <IndexBox>
+                <VantaContent ref={(c) => (this.myRef = c)} style={{ width: '100vw', height: '100vh' }}>
+                    <script async src="/js/three.min.js" />
+                </VantaContent >
+                <IndexContent>
+                    {this.getFpsDom()}
+                    <ContentText>想都是问题，做才是答案，静下心往前走</ContentText>
+                    <Typewriter />
+                </IndexContent>
+            </IndexBox>
+        )
+    }
+}
+
 export default Index;

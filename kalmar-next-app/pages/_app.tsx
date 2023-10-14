@@ -1,3 +1,5 @@
+import Layout from "@/src/components/Layout";
+import { PageStatic } from "@/src/utils/types";
 import App from "next/app";
 import Head from "next/head";
 import React from "react";
@@ -7,8 +9,7 @@ if (!__SERVER__) {
 }
 export interface AppProps {
     env: string; //运行环境
-    path: string; // 页面path
-    query: Record<string, string>; // query信息
+    pageProps: any
 }
 
 export default class MyApp extends App<AppProps> {
@@ -21,26 +22,19 @@ export default class MyApp extends App<AppProps> {
      *
      * getInitialProps()返回了一个对象，其属性能够做为props传递到组件中进行使用
      */
-    static async getStaticProps({ Component, ctx }) {
-        // 初始化传给页面的props
-        let pageProps: {};
-
-        // 先判断当前页面是否已经定义过getInitialProps(V9.3+版本改名为getStaticProps静态props/getServerSideProps服务端props)
-        if (Component.getStaticProps) {
-            pageProps = await Component.getStaticProps(ctx);
-        }
+    static getInitialProps = async ({ ctx }) => {
         return {
             pageProps: {
-                ...pageProps,
-                baseInfo: ctx?.req?.baseInfo,
                 hostname: ctx?.req?.hostname,
                 pathname: ctx?.pathname,
-            },
+                query: ctx?.query,
+            } as any,
         };
-    }
+    };
     // 对页面重新渲染
     render() {
         const { Component, pageProps } = this.props;
+        const { COMMON_PAGE, IS_INDEX } = (Component as unknown) as PageStatic;
         return (
             <React.Fragment>
                 <Head>
@@ -51,7 +45,9 @@ export default class MyApp extends App<AppProps> {
                     />
                     <title>next.js project</title>
                 </Head>
-                <Component {...pageProps} />
+                <Layout path={pageProps.pathname} query={pageProps.query} isCommonPage={COMMON_PAGE} isIndex={IS_INDEX}>
+                    <Component {...pageProps} />
+                </Layout>
             </React.Fragment>
         );
     }

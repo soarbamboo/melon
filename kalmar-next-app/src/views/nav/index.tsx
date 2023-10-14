@@ -1,6 +1,14 @@
-const Nav = (props) => {
+import React from "react";
+import Navigation from "@/src/components/Navigation";
+import { NavContent } from "./style";
 
-    return <div>Nav</div>
+
+
+export default class Nav extends React.Component {
+    render() {
+        return (
+            <NavContent>
+            </NavContent>
+        )
+    }
 }
-
-export default Nav

@@ -1,7 +1,10 @@
-import styled from 'styled-components';
-
-export const NavContent = styled.div`
-  width: 100%;
+import styled, { css } from 'styled-components';
+import MyIcon from '../MyIcon';
+export const NavigationContent = styled.div`
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 9;
   background-color: transparent;
   padding: 20px;
   justify-content: space-between;
@@ -10,6 +13,12 @@ export const NavContent = styled.div`
   color: #2b2928;
   font-size: 16px;
   box-sizing: border-box;
+
+  ${(props: { isIndex: boolean }) =>
+    !props.isIndex &&
+    css`
+      border-bottom: 1px solid #eaeaea;
+    `}
 `;
 
 export const LeftLogo = styled.a`
