@@ -1,6 +1,13 @@
-const NotePad = (props) => {
+import React from "react";
 
-    return <div>NotePad</div>
+
+
+export default class Notepad extends React.Component {
+    render() {
+        return (
+            <div>
+                Notepad
+            </div>
+        )
+    }
 }
-
-export default NotePad

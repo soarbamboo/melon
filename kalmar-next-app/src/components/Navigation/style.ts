@@ -14,8 +14,8 @@ export const NavigationContent = styled.div`
   font-size: 16px;
   box-sizing: border-box;
 
-  ${(props: { isIndex: boolean }) =>
-    !props.isIndex &&
+  ${(props: { dataIsIndex: boolean }) =>
+    !props.dataIsIndex &&
     css`
       border-bottom: 1px solid #eaeaea;
     `}

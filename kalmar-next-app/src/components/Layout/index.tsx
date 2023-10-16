@@ -20,11 +20,10 @@ export default class Layout extends React.Component<LayoutProps> {
         if (isCommonPage) {
             return <React.Fragment>{children}</React.Fragment>;
         }
-        console.log(this.props)
         return (
             <div style={{ width: "100%" }}>
                 <Navigation isIndex={isIndex} />
-                <MainCounter isIndex={isIndex}>
+                <MainCounter data-isindex={isIndex}>
                     {children}
                 </MainCounter>
                 <Footer>
