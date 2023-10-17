@@ -10,7 +10,7 @@ class Navigation extends React.Component<NavigationProps>{
     render(): React.ReactNode {
         const { isIndex } = this.props
         return (
-            <NavigationContent data-isindex={isIndex}>
+            <NavigationContent isIndex={isIndex}>
                 <LeftLogo href="https://github.com/soarbamboo">
                     <MyIcon type="github-copy" style={{ marginRight: 8 }} />
                     Github

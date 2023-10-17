@@ -23,7 +23,7 @@ export default class Layout extends React.Component<LayoutProps> {
         return (
             <div style={{ width: "100%" }}>
                 <Navigation isIndex={isIndex} />
-                <MainCounter data-isindex={isIndex}>
+                <MainCounter isIndex={isIndex}>
                     {children}
                 </MainCounter>
                 <Footer>

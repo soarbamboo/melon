@@ -5,8 +5,8 @@ export const MainCounter = styled.main`
   margin-top: 0px;
   height: 100vh;
   position: relative;
-  ${(props: { dataIsIndex: boolean }) =>
-    !props.dataIsIndex &&
+  ${(props: { isIndex: boolean }) =>
+    !props.isIndex &&
     css`
       padding-top: 82px;
       box-sizing: border-box;
