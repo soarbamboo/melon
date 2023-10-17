@@ -1,5 +1,5 @@
 {
-  "name": "range-next-app",
+  "name": "kalmar-next-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "yarn && PORT=8310 node server.js",
     "build": "next build",
-    "start": "next start -p 3499",
+    "start": "next start -p 9091",
     "lint": "next lint"
   },
   "dependencies": {
@@ -18,7 +18,7 @@
     "next": "^13.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^6.0.8",
+    "styled-components": "^5.3.11",
     "vanta": "^0.5.24"
   },
   "devDependencies": {

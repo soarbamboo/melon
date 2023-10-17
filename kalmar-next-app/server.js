@@ -1,7 +1,6 @@
 const { app, server } = require('./utils/app');
 const port = process.env.PORT;
 const ip = 'localhost';
-
 const handle = app.getRequestHandler();
 app
   .prepare()

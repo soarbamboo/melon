@@ -18,9 +18,7 @@ export default class MyDocument extends Document<DocumentProps> {
             }
             ctx.renderPage = () =>
                 originalRenderPage({
-                    enhanceApp: (App) => (props) => {
-                        return sheet.collectStyles(<App  {...props} key={props.route} />)
-                    }
+                    enhanceApp: (App) => (props) => sheet.collectStyles(<App  key="unique-key" {...props} />)
                 });
             const { hostname, headmeta, protocol, url } = ctx?.req || {};
             const initialProps = await Document.getInitialProps(ctx);

@@ -21,7 +21,7 @@ export const Footer = styled.footer`
   & > a {
     text-decoration: none;
     color: #444a50;
-    font-wight: 600;
+    font-weight: 600;
     font-size: 12px;
     font-family: circular, 'segoe ui', sans-serif;
   }
