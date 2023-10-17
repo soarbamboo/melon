@@ -17,6 +17,7 @@ export const NavigationContent = styled.div`
     !props.isIndex &&
     css`
       border-bottom: 1px solid #eaeaea;
+      background-color: #fff;
     `}
 `;
 

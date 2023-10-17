@@ -1,6 +1,6 @@
 import React from "react";
-import { NavContent } from "./style";
-
+import { NavContent, NavTypeItem, NavTypeItemTitle, NavTypeItemBox, NavItem } from "./style";
+import { navList } from "./common"
 
 
 export default class Nav extends React.Component {
@@ -8,6 +8,24 @@ export default class Nav extends React.Component {
         return (
             <NavContent>
                 {/* 类型分类 */}
+                {
+                    navList.map(navTypeitem => (
+                        <NavTypeItem key={navTypeitem.name}>
+                            <NavTypeItemTitle>{navTypeitem.name}</NavTypeItemTitle>
+                            <NavTypeItemBox>
+                                {
+                                    navTypeitem.children.map(navItem => (
+                                        <NavItem key={navItem.link}>
+                                            {navItem.name}
+                                        </NavItem>
+                                    ))
+
+                                }
+                            </NavTypeItemBox>
+                        </NavTypeItem>
+                    ))
+                }
+
             </NavContent>
         )
     }
