@@ -1,12 +1,12 @@
 FROM node:16-alpine
 
-RUN  mkdir -p /home/kalmar-next-app
+RUN  mkdir -p /home/melon-next-app
 
-WORKDIR /home/kalmar-next-app
+WORKDIR /home/melon-next-app
 
-COPY  . /home/kalmar-next-app
-COPY package.json /home/kalmar-next-app/
-COPY yarn.lock /home/kalmar-next-app/
+COPY  . /home/melon-next-app
+COPY package.json /home/melon-next-app/
+COPY yarn.lock /home/melon-next-app/
 
 RUN apk update && apk upgrade && apk add --no-cache git 
 
